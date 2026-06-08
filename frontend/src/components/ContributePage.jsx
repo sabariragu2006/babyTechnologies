@@ -141,8 +141,12 @@ export default function ContributePage() {
       return;
     }
 
-    const response = await fetch("http://localhost:5000/create-order", {
-      method: "POST",
+const BASE_URL = import.meta.env.PROD
+  ? "https://vidhagam-backend.onrender.com"
+  : "http://localhost:5000";
+
+const response = await fetch(`${BASE_URL}/create-order`, {
+        method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
