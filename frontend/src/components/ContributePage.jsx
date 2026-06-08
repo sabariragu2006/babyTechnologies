@@ -6,7 +6,7 @@ import {
   Terminal, GitPullRequest,
 } from "lucide-react";
 
-const GITHUB_URL = "https://github.com/sabari/vidhagam";
+const GITHUB_URL = "https://github.com/sabariragu2006/vidhagam";
 
 const DONATION_AMOUNTS = [
   { amount: 15,  label: "₹15",  desc: "Buy us a coffee",     tag: ""        },
@@ -132,6 +132,51 @@ export default function ContributePage() {
   const [custom, setCustom]       = useState("");
   const [useCustom, setUseCustom] = useState(false);
   const w = useWindowWidth();
+  const handleDonate = async () => {
+  try {
+    const amount = Number(useCustom ? custom : selected);
+
+    if (!amount || amount < 1) {
+      alert("Please enter a valid amount");
+      return;
+    }
+
+    const response = await fetch("http://localhost:5000/create-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ amount }),
+    });
+
+    const data = await response.json();
+
+    const options = {
+      key: data.key,
+      amount: data.order.amount,
+      currency: data.order.currency,
+      name: "Vidhagam",
+      description: "Support Open Source Development",
+      order_id: data.order.id,
+
+      handler: async function (response) {
+        alert(
+          `Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`
+        );
+      },
+
+      theme: {
+        color: "#fbbf24",
+      },
+    };
+
+    const razorpay = new window.Razorpay(options);
+    razorpay.open();
+  } catch (err) {
+    console.error(err);
+    alert("Unable to start payment");
+  }
+};
 
   const isMobile = w < 640;
   const isTablet = w >= 640 && w < 1024;
@@ -313,8 +358,8 @@ export default function ContributePage() {
 
           <div style={{ textAlign: "center", position: "relative" }}>
             <button
-              onClick={() => alert(`Razorpay coming soon! ₹${donateAmt}`)}
-              style={{ background: "linear-gradient(135deg,#fbbf24,#b45309)", color: "#000",
+                       onClick={handleDonate}
+                       style={{ background: "linear-gradient(135deg,#fbbf24,#b45309)", color: "#000",
                        border: "none", padding: isMobile ? "14px 24px" : "17px 40px",
                        borderRadius: 14, fontSize: isMobile ? 14 : 16, fontWeight: 800,
                        cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 10,

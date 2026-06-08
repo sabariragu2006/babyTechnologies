@@ -33,16 +33,11 @@ const AboutPage = ({ navigate }) => {
     { id: 8, title: "Export & Reports",      desc: "Export results to CSV, JSON, or PNG with one click",                                     color: "#1a1000" },
   ];
 
-  const handleDownload = () => {
-    setDownloading(true);
-    const link = document.createElement("a");
-    link.href = "/downloads/agaradhi.exe";
-    link.download = "Agaradhi SQLite Manager.exe";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => setDownloading(false), 1500);
-  };
+ const handleDownload = () => {
+  setDownloading(true);
+  window.location.href = "/downloads/Vidhagam_SQLiteManager_Setup.exe";
+  setTimeout(() => setDownloading(false), 1500);
+};
 
   const goToSlide = (i) => setActiveSlide(i);
   const nextSlide = () => setActiveSlide((p) => (p + 1) % screenshots.length);
@@ -124,7 +119,7 @@ const AboutPage = ({ navigate }) => {
           color: "#9ca3af", lineHeight: 1.8,
           margin: "0 0 32px", maxWidth: 600,
         }}>
-          Agaradhi is a lightweight, offline-first desktop application designed to streamline
+          Vidhagam is a lightweight, offline-first desktop application designed to streamline
           database exploration, SQL querying, schema visualization, and AI-assisted query
           generation — without any cloud dependency or subscription.
         </p>
@@ -172,7 +167,7 @@ const AboutPage = ({ navigate }) => {
             Interface Preview
           </p>
           <h2 style={{ fontSize: "clamp(20px,3vw,36px)", fontWeight: 800, margin: "0 0 12px" }}>
-            See Agaradhi in Action
+            See Vidhagam in Action
           </h2>
           <p style={{ fontSize: 14, color: "#9ca3af", maxWidth: 480, margin: "0 auto", lineHeight: 1.7 }}>
             Clean, dark interface built for long working sessions. Navigate

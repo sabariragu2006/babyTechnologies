@@ -81,40 +81,40 @@ const DeveloperPage = ({ navigate }) => {
     },
   ];
 
-  const projects = [
-    {
-      id: "maadala",
-      emoji: "💰",
-      name: "Maadala",
-      tagline: "Personal Finance Tracker",
-      desc: "A full-stack web app for tracking personal finances, managing budgets, visualising spending patterns, and analysing portfolio performance — built with the MERN stack.",
-      tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Chart.js"],
-      liveUrl: "https://dulcet-phoenix-32f7f5.netlify.app/",
-      githubUrl: "https://github.com/sabariragu2006/",
-      badge: "Live · Web App",
-    },
-    {
-      id: "thugil",
-      emoji: "🧵",
-      name: "Thugil ERP",
-      tagline: "Textile Shop Management",
-      desc: "Offline-first desktop ERP for Indian textile businesses. GST billing, inventory tracking, supplier CRM, customer management, and detailed sales analytics.",
-      tech: ["C#", "WPF", ".NET", "SQLite", "MVVM"],
-      downloadUrl: "/downloads/textileshop.exe",
-      aboutUrl: "about",
-      badge: "Desktop App",
-    },
-    {
-      id: "vidhagam",
-      emoji: "🗄",
-      name: "Vidhagam",
-      tagline: "AI-Powered SQLite Manager",
-      desc: "Professional desktop SQLite manager with VS Code-style dark UI, multi-session support, AI query generation via Gemini, ER diagram export, and CSV import/export.",
-      tech: ["C#", "WPF", ".NET 4.7.2", "SQLite", "Gemini AI"],
-      downloadUrl: "/downloads/vidhagam.exe",
-      badge: "Desktop App",
-    },
-  ];
+ const projects = [
+  {
+    id: "maadala",
+    emoji: "💰",
+    name: "Maadala",
+    tagline: "Personal Finance Tracker",
+    desc: "A full-stack web app for tracking personal finances...",
+    tech: ["React.js", "Node.js", "MongoDB", "Express.js", "Chart.js"],
+    liveUrl: "https://dulcet-phoenix-32f7f5.netlify.app/",
+    githubUrl: "https://github.com/sabariragu2006/",
+    badge: "Live · Web App",
+  },
+  {
+    id: "thugil",
+    emoji: "🧵",
+    name: "Thugil ERP",
+    tagline: "Textile Shop Management",
+    desc: "Offline-first desktop ERP for Indian textile businesses...",
+    tech: ["C#", "WPF", ".NET", "SQLite", "MVVM"],
+    downloadUrl: "/downloads/textileshop.exe",
+    aboutUrl: "about",
+    badge: "Desktop App",
+  },
+  {
+    id: "vidhagam",
+    emoji: "🗄",
+    name: "Vidhagam",
+    tagline: "AI-Powered SQLite Manager",
+    desc: "Professional desktop SQLite manager with VS Code-style dark UI...",
+    tech: ["C#", "WPF", ".NET 8", "SQLite", "Gemini AI"],
+    downloadUrl: "/downloads/Vidhagam_SQLiteManager_Setup.exe",
+    badge: "Desktop App",
+  },
+];
 
   const highlights = [
     { value: "3+",   label: "Projects"       },
@@ -642,11 +642,13 @@ const DeveloperPage = ({ navigate }) => {
                     <ExternalLink size={13} /> Live Demo
                   </a>
                 )}
-
                 {project.downloadUrl && (
                   <a
                     href={project.downloadUrl}
-                    download
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = project.downloadUrl;
+                    }}
                     style={{
                       display: "flex", alignItems: "center", gap: "7px",
                       background: "linear-gradient(135deg, #fbbf24, #b45309)",

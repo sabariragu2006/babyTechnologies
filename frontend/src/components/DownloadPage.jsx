@@ -21,16 +21,11 @@ const DownloadPage = ({ navigate }) => {
   const [downloading, setDownloading] = useState(false);
   const { isMobile, isTablet, isDesktop, w } = useBreakpoint();
 
-  const handleDownload = () => {
-    setDownloading(true);
-    const link = document.createElement("a");
-    link.href = "/downloads/agaradhi.exe";
-    link.download = "Vidhagam SQLite Manager.exe";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => setDownloading(false), 1500);
-  };
+const handleDownload = () => {
+  setDownloading(true);
+  window.location.href = "/downloads/Vidhagam_SQLiteManager_Setup.exe";
+  setTimeout(() => setDownloading(false), 1500);
+};
 
   const features = [
     { icon: <Database  size={22} color="#fbbf24" />, title: "Database Explorer",     desc: "Browse, create, and manage multiple SQLite databases with a clean tree view"              },
