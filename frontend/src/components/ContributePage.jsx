@@ -142,7 +142,7 @@ export default function ContributePage() {
     }
 
 const BASE_URL = import.meta.env.PROD
-  ? "https://vidhagam-backend.onrender.com"
+  ? "https://babytechnologies.onrender.com/"
   : "http://localhost:5000";
 
 const response = await fetch(`${BASE_URL}/create-order`, {
