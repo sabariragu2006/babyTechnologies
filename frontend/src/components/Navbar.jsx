@@ -3,15 +3,7 @@ import { Download, Database, Menu, X } from "lucide-react";
 
 const Navbar = ({ navigate, currentPage, onDownload, downloading }) => {
   const [menuOpen, setMenuOpen] = useState(false);
- // Replace this:
-const [isMobile, setIsMobile] = useState(false);
 
-useEffect(() => {
-  const check = () => setIsMobile(window.innerWidth < 768);
-  check();
-  window.addEventListener("resize", check);
-  return () => window.removeEventListener("resize", check);
-}, []);
 
 // With this:
 const [isMobile, setIsMobile] = useState(
