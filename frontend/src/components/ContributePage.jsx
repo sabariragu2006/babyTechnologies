@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import {
   Bug, Lightbulb, BookOpen, Heart, Star, GitFork, Users, Download,
   Code2, Palette, FileText, ShieldCheck, Cpu, Network, Database,
-  Zap, Clock, Puzzle, Monitor, BarChart3, CheckCircle2, ArrowRight,
-  Terminal, GitPullRequest,
+  Zap, Puzzle, Monitor, BarChart3, CheckCircle2, ArrowRight, GitPullRequest,
 } from "lucide-react";
 
 const GITHUB_URL = "https://github.com/sabariragu2006/vidhagam";
@@ -132,55 +131,20 @@ export default function ContributePage() {
   const [custom, setCustom]       = useState("");
   const [useCustom, setUseCustom] = useState(false);
   const w = useWindowWidth();
-  const handleDonate = async () => {
-  try {
-    const amount = Number(useCustom ? custom : selected);
 
-    if (!amount || amount < 1) {
-      alert("Please enter a valid amount");
-      return;
-    }
 
-const BASE_URL = import.meta.env.PROD
-  ? "https://babytechnologies.onrender.com/"
-  : "http://localhost:5000";
-
-const response = await fetch(`${BASE_URL}/create-order`, {
-        method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ amount }),
-    });
-
-    const data = await response.json();
-
-    const options = {
-      key: data.key,
-      amount: data.order.amount,
-      currency: data.order.currency,
-      name: "Vidhagam",
-      description: "Support Open Source Development",
-      order_id: data.order.id,
-
-      handler: async function (response) {
-        alert(
-          `Payment Successful!\nPayment ID: ${response.razorpay_payment_id}`
-        );
-      },
-
-      theme: {
-        color: "#fbbf24",
-      },
-    };
-
-    const razorpay = new window.Razorpay(options);
-    razorpay.open();
-  } catch (err) {
-    console.error(err);
-    alert("Unable to start payment");
+  const handleDonate = () => {
+  const amount = Number(useCustom ? custom : selected);
+  
+  if (!amount || amount < 1) {
+    alert("Please enter a valid amount");
+    return;
   }
+
+  window.open(`https://razorpay.me/@ragusabari?amount=${amount * 100}`, "_blank");
 };
+
+
 
   const isMobile = w < 640;
   const isTablet = w >= 640 && w < 1024;
