@@ -141,7 +141,7 @@ export default function ContributePage() {
     return;
   }
 
-  window.open(`https://razorpay.me/@ragusabari?amount=${amount * 100}`, "_blank");
+  window.open(`https://razorpay.me/@ragusabari`, "_blank");
 };
 
 
